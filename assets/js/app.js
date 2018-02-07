@@ -33,6 +33,10 @@ function error(error) {
       center: myLatLng ,
       zoom: 14
     });
+        $('#traffic').click(function(){
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+    });
     new AutocompleteDirectionsHandler(map);
     /*
     *adquiriendo localizacion en el mapa
@@ -62,24 +66,21 @@ function error(error) {
     }
 
     function AutocompleteDirectionsHandler(map) {
-        this.map = map;
-        this.originPlaceId = null;
-        this.destinationPlaceId = null;
-        this.travelMode = 'WALKING';
-        var originInput = document.getElementById('origin-input');
-        var destinationInput = document.getElementById('destination-input');
-
-        this.directionsService = new google.maps.DirectionsService;
-        this.directionsDisplay = new google.maps.DirectionsRenderer;
-        this.directionsDisplay.setMap(map);
-
-        var originAutocomplete = new google.maps.places.Autocomplete(
-            originInput, {placeIdOnly: true});
-        var destinationAutocomplete = new google.maps.places.Autocomplete(
-            destinationInput, {placeIdOnly: true});
-        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
-        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
-
+      this.map = map;
+      this.originPlaceId = null;
+      this.destinationPlaceId = null;
+      this.travelMode = 'DRIVING';
+      var originInput = document.getElementById('origin-input');
+      var destinationInput = document.getElementById('destination-input');
+      this.directionsService = new google.maps.DirectionsService;
+      this.directionsDisplay = new google.maps.DirectionsRenderer;
+      this.directionsDisplay.setMap(map);
+      var originAutocomplete = new google.maps.places.Autocomplete(
+        originInput, {placeIdOnly: true});
+      var destinationAutocomplete = new google.maps.places.Autocomplete(
+        destinationInput, {placeIdOnly: true});
+      this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+      this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
       }
       AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
         var me = this;
@@ -97,7 +98,6 @@ function error(error) {
           }
           me.route();
         });
-
       };
 
       AutocompleteDirectionsHandler.prototype.route = function() {
@@ -105,7 +105,6 @@ function error(error) {
           return;
         }
         var me = this;
-
         this.directionsService.route({
           origin: {'placeId': this.originPlaceId},
           destination: {'placeId': this.destinationPlaceId},
@@ -124,4 +123,5 @@ function error(error) {
         infoWindow.setContent(browserHasGeolocation ?
           'Error: The Geolocation service failed.' :
           'Error: Your browser doesn\'t support geolocation.');
-      }
+      };
+      
