@@ -25,3 +25,8 @@ header p{
   width: 100vw;
   background-color: gray;
 }
+
+.controls {
+  border-radius: 3px;
+  padding: 0.3em;
+}
