@@ -9,13 +9,44 @@
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-  
-
+  <header>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+          <div class="col-lg-4 col-md-4">
+            <button type="button" class="btn btn-warning">Encuéntrame</button>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <div class="d-flex flex-column">
+              <label for="name" class="control-label">Origen</label>
+              <input type="text" value='' class="form-control" id="origin" placeholder="Ingresa punto de origen">
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <div class="d-flex flex-column">
+              <label for="name" class="control-label">Destino</label>
+              <input type="text" value='' class="form-control" id="destiny" placeholder="Ingresa tu destino">
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2">
+            <button type="button" class="btn btn-warning">Ruta</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="container-fluid">
+    <div class="row">
+      <div id="map" class="col-lg-12">
+        
+      </div>
+    </div>
+  </main>
 
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqep9Zjv83LBxb2_qTwAtJoOilp1M1Sf4&libraries=places&callback=initMap" async defer></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
