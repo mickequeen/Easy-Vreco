@@ -1,26 +1,3 @@
-/*var options = {
-  enableHighAccuracy : true,
-  timeout: 6000,
-  maximumAge: 0
-};
-
-navigator.geolocation.getCurrentPosition( success, error, options );
-
-function success(position) {
-  var coordenadas = position.coords;
-  console.log('Tu posición actual es: ');
-  console.log('Latitud: ' + coordenadas.latitude);
-  console.log('Longitud: ' + coordenadas.longitude);
-  console.log('Más o menos ' + coordenadas.accuracy + ' metros. ');
-
-};
-
-function error(error) {
-  console.error('ERROR(' + error.code + '): ' + error.message);
-};*/
-/*
-*inicializando el mapa
-*/
 function initMap() {
   /*
   *ingresando coordenadas por defecto (lab)
@@ -37,6 +14,7 @@ function initMap() {
       var trafficLayer = new google.maps.TrafficLayer();
       trafficLayer.setMap(map);
   });
+
   new AutocompleteDirectionsHandler(map);
 
   /*
@@ -68,18 +46,6 @@ function initMap() {
     alert("Tenemos un problema con encontrar tu ubicación");
   }
 }
-/*var tipoRuta;
-$('#driving').click(function(){
-  tipoRuta = this.id;
-  alert(tipoRuta);
-})
-
-$('#walking').click(function () {
-  tipoRuta = this.id;
-  alert(tipoRuta);
-})
-*/
-
 
 function AutocompleteDirectionsHandler(map) {
   this.map = map;
@@ -128,9 +94,17 @@ AutocompleteDirectionsHandler.prototype.route = function() {
     travelMode: this.travelMode
   }, function(response, status) {
     if (status === 'OK') {
-      me.directionsDisplay.setDirections(response);
+      $('#ruta').click(() => {
+        if ($('#origen').val() === '') {
+          alert("Debes ingresar una ruta")
+        } else {
+          me.directionsDisplay.setDirections(response);
+          $('#origen').val() = '';
+          $('#destino').val() = '';
+        }
+      });
     } else {
-      window.alert('Directions request failed due to ' + status);
+      window.alert('Se ha producido un error en la solicitud de ' + status);
     }
   });
 };
