@@ -2,21 +2,19 @@ function initMap() {
   /*
   *ingresando coordenadas por defecto (lab)
   */
-  var myLatLng = {lat: -33.418862, lng: -70.641766}
+  var myLatLng = {lat: -33.418862, lng: -70.641766};
   /*
   *adquiere elemento dnde depositar mapa
   */
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: myLatLng ,
+    center: myLatLng,
     zoom: 14
   });
-      $('#traffic').click(function(){
-      var trafficLayer = new google.maps.TrafficLayer();
-      trafficLayer.setMap(map);
+  $('#traffic').click(function() {
+    var trafficLayer = new google.maps.TrafficLayer();
+    trafficLayer.setMap(map);
   });
-
   new AutocompleteDirectionsHandler(map);
-
   /*
   *adquiriendo localizacion en el mapa con botón encuentrame
   */
@@ -24,8 +22,8 @@ function initMap() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(functionSuccess, functionError);
     }
-  }
-  document.getElementById("encuentrame").addEventListener("click", posicionActual);
+  };
+  document.getElementById('encuentrame').addEventListener('click', posicionActual);
   var latitud, longitud;
   var functionSuccess = (position) => {
     latitud = position.coords.latitude;
@@ -37,14 +35,12 @@ function initMap() {
       icon: image,
       map: map,
     });
-
     map.setZoom(17);
     map.setCenter({ lat: latitud, lng: longitud });
-  }
-
+  };
   var functionError = (error) => {
-    alert("Tenemos un problema con encontrar tu ubicación");
-  }
+    alert('Tenemos un problema con encontrar tu ubicación');
+  };
 }
 
 function AutocompleteDirectionsHandler(map) {
@@ -71,7 +67,7 @@ AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(aut
   autocomplete.addListener('place_changed', function() {
     var place = autocomplete.getPlace();
     if (!place.place_id) {
-      window.alert("Please select an option from the dropdown list.");
+      window.alert('Please select an option from the dropdown list.');
       return;
     }
     if (mode === 'ORIG') {
@@ -96,11 +92,11 @@ AutocompleteDirectionsHandler.prototype.route = function() {
     if (status === 'OK') {
       $('#ruta').click(() => {
         if ($('#origen').val() === '') {
-          alert("Debes ingresar una ruta")
+          alert('Debes ingresar una ruta');
         } else {
           me.directionsDisplay.setDirections(response);
-          $('#origen').val() = '';
-          $('#destino').val() = '';
+          $('#origin-input').val('');
+          $('#destination-input').val('');
         }
       });
     } else {
@@ -115,4 +111,3 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     'Error: The Geolocation service failed.' :
     'Error: Your browser doesn\'t support geolocation.');
 };
-  
