@@ -28,11 +28,9 @@ function initMap() {
   var functionSuccess = (position) => {
     latitud = position.coords.latitude;
     longitud = position.coords.longitude;
-    var image = 'http://www.bikebarn.co.nz/media/wysiwyg/home-icon-bike.png';
     var miUbicacion = new google.maps.Marker({
       position: { lat: latitud, lng: longitud },
       animation: google.maps.Animation.DROP,
-      icon: image,
       map: map,
     });
     map.setZoom(17);
